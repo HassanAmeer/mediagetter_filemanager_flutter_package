@@ -1,4 +1,5 @@
 # mediagetter
+- Like for filemanager  
 
 A Flutter plugin for accessing media and files on Android devices using method channels. It provides a simple interface to retrieve images, videos, and other files, along with their metadata, and supports actions like opening and deleting files.
 
@@ -16,7 +17,7 @@ A Flutter plugin for accessing media and files on Android devices using method c
 - Display native Android toast notifications.
 
 ### Screenshots
- <img src="https://github.com/HassanAmeer/timer_widget_flutter_package/blob/master/screenshots/timer_widget.png" style="width:50%">
+ <img src="https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package/blob/main/screenshots/demo.png" style="width:50%">
  <hr>
 
 
@@ -37,8 +38,7 @@ dependencies:
 
 ## example usage
 
-### Permissions
-### 1. reuwst a permissions thats you need
+### 1. request a permissions thats you need
 ```dart
   getPermissions() async {
     // Request permissions based on Android version
@@ -81,6 +81,7 @@ dependencies:
 ```
 
 ### 2. get files thast you need 
+- now call any media function thats you need 
 ```dart
  onPressed: () async {
           var check = await Mediagetter().getAllImages(
@@ -121,7 +122,7 @@ dependencies:
           );
         },
 ```
-### result
+### print result
 ```bash
     I/flutter (10376): 👉🏻 getAllImages (/storage/emulated/0/Download/images.png)
     I/flutter (10376): 👉🏻 limitedVideos (/storage/emulated/0/Download/file_example_MP4_480_1_5MG.mp4)

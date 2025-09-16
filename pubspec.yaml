@@ -1,7 +1,14 @@
 name: mediagetter
-description: "A new Flutter plugin project."
+description: "Retrieve all images, videos, and files from Android device storage."
 version: 0.0.1
 homepage:
+
+homepage:  https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package
+# on home page github or google link
+documentation: https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package
+repository: https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package
+issue_tracker: https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package/issues
+
 
 environment:
   sdk: ^3.8.1
@@ -38,6 +45,11 @@ flutter:
       android:
         package: com.devbeast.mediagetter
         pluginClass: MediagetterPlugin
+
+####################
+screenshots:
+  - description: Demo Getting Media Like File Manager.
+    path: screenshots/demo.png
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
