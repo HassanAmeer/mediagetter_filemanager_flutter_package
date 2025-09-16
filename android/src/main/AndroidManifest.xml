@@ -1,0 +1,25 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.devbeast.mediagetter">
+  
+  <!-- just accept it by permissions handler package -->
+  <!-- for all -->
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <!-- photos -->
+  <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+  <!-- videos -->
+  <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+  <!-- audio -->
+  <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+  <!-- <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" android:minSdkVersion="33" /> -->
+
+  <!-- For accessing non-media files in Download folder (optional, if targeting full access) -->
+  <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" android:minSdkVersion="30" />
+
+  <!-- for using delete files only -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+
+  <application
+        android:requestLegacyExternalStorage="true"
+        >
+  </application>
+</manifest>
