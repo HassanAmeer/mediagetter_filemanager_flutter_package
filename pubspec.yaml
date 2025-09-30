@@ -1,4 +1,7 @@
 name: media_getter
+# discontinued: true
+# or add a message
+discontinued: "This package has been replaced by media_getter"
 description: "Retrieve all images, videos, and files from Android device storage."
 version: 0.0.1
 
