@@ -17,7 +17,8 @@ A Flutter plugin for accessing media and files on Android devices using method c
 - Display native Android toast notifications.
 
 ### Screenshots
- <img src="screenshots/demo.png" style="width:50%">
+ <img src="https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package/blob/main/screenshots/demo.png?raw=true" style="width:50%">
+ [![Media getter Demo](https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package/blob/main/screenshots/demo.png?raw=true)](https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package/)
  <hr>
 
 
@@ -130,3 +131,5 @@ dependencies:
     I/flutter (10376): 👉🏻 getFiles (/storage/emulated/0/Documents/Get_Started_With_Smallpdf.pdf, /storage/emulated/0/Download/file_example_MP4_480_1_5MG.mp4, /storage/emulated/0/Download/file_example_MP3_1MG (1).mp3, /storage/emulated/0/Download/file_example_MP3_1MG.mp3, /storage/emulated/0/Download/Get_Started_With_Smallpdf.pdf)
     I/flutter (10376): 👉🏻 getDownloadedFiles (/storage/emulated/0/Download/images.png, /storage/emulated/0/Download/sample-large-zip-file.zip, /storage/emulated/0/Download/sample-zip-file.zip, ..., /storage/emulated/0/Download/images.jpeg, /storage/emulated/0/Download/download.png)
 ```
+# ScreenShot
+ [![Media getter Demo](screenshots/demo.png?raw=true)](https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package/)
