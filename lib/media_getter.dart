@@ -5,8 +5,8 @@
 // platforms in the `pubspec.yaml` at
 // https://flutter.dev/to/pubspec-plugin-platforms.
 
-import 'package:media_getter/models/fileModel.dart';
-import 'package:media_getter/models/videoModel.dart';
+import 'package:mediagetter/models/fileModel.dart';
+import 'package:mediagetter/models/videoModel.dart';
 
 import 'media_getter_method_channel.dart';
 import 'media_getter_platform_interface.dart';

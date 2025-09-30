@@ -1,5 +1,5 @@
-import 'package:media_getter/models/fileModel.dart';
-import 'package:media_getter/models/videoModel.dart';
+import 'package:mediagetter/models/fileModel.dart';
+import 'package:mediagetter/models/videoModel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'media_getter_method_channel.dart';

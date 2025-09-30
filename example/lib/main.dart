@@ -14,7 +14,7 @@ class FileManagerDemoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'File Manager Demo BY media_getter',
+      title: 'File Manager Demo By media_getter',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.indigo, // Indigo as primary color

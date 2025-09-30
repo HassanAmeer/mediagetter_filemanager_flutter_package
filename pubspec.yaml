@@ -1,9 +1,9 @@
-name: media_getter
+name: mediagetter
 # discontinued: true
 # or add a message
-discontinued: "This package has been replaced by media_getter"
+discontinued: "This package has been replaced by mediagetter"
 description: "Retrieve all images, videos, and files from Android device storage."
-version: 0.0.1
+version: 0.0.2
 
 homepage:  https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package
 # on home page github or google link
