@@ -4,3 +4,5 @@
 
 ## 0.0.2
 * just trying to change the name mediagetter to media_getter
+## 0.0.3
+* added screenshot demo
