@@ -1,6 +1,6 @@
-# mediagetter_example
+# media_getter_example
 
-Demonstrates how to use the mediagetter plugin.
+Demonstrates how to use the media_getter plugin.
 
 ## Getting Started
 

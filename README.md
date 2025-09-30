@@ -1,4 +1,4 @@
-# mediagetter
+# media_getter
 - Like for filemanager  
 
 A Flutter plugin for accessing media and files on Android devices using method channels. It provides a simple interface to retrieve images, videos, and other files, along with their metadata, and supports actions like opening and deleting files.
@@ -17,7 +17,7 @@ A Flutter plugin for accessing media and files on Android devices using method c
 - Display native Android toast notifications.
 
 ### Screenshots
- <img src="https://github.com/HassanAmeer/mediagetter_filemanager_flutter_package/blob/main/screenshots/demo.png" style="width:50%">
+ <img src="https://github.com/HassanAmeer/media_getter_filemanager_flutter_package/blob/main/screenshots/demo.png" style="width:50%">
  <hr>
 
 
@@ -27,7 +27,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  mediagetter: ^0.0.1
+  media_getter: ^0.0.1
 ```
 
 
@@ -71,7 +71,7 @@ dependencies:
 
     if (!hasStorageAccess && !hasMediaAccess && !hasFullAccess) {
       debugPrint("Required permissions denied");
-      await Mediagetter().showToast(
+      await media_getter().showToast(
         "Please grant storage permissions",
         length: ToastLength.long,
       );
@@ -84,7 +84,7 @@ dependencies:
 - now call any media function thats you need 
 ```dart
  onPressed: () async {
-          var check = await Mediagetter().getAllImages(
+          var check = await media_getter().getAllImages(
             orderByDesc: true,
             // limit: 1,
             fromDate: DateTime.now().subtract(const Duration(days: 1)),
@@ -93,17 +93,17 @@ dependencies:
             "👉🏻 getAllImages ${check.map((e) => e.path).toString()}",
           );
 
-          final limitedVideos = await Mediagetter().getAllVideos();
+          final limitedVideos = await media_getter().getAllVideos();
           debugPrint(
             "👉🏻 limitedVideos ${limitedVideos.map((e) => e.path).toString()}",
           );
 
-          final getFiles = await Mediagetter().getAllFiles(
+          final getFiles = await media_getter().getAllFiles(
             fileExtensions: ['pdf', 'txt', 'mp4', 'mp3', 'jpg', 'wav'],
           );
           debugPrint("👉🏻 getFiles ${getFiles.map((e) => e.path).toString()}");
 
-          final getDownloadedFiles = await Mediagetter()
+          final getDownloadedFiles = await media_getter()
               .getDownloadFolderItems();
           debugPrint(
             "👉🏻 getDownloadedFiles ${getDownloadedFiles.map((e) => e.path).toString()}",
@@ -112,11 +112,11 @@ dependencies:
           // if (getFiles.isNotEmpty) {
           //   final path = getFiles.first.path ?? getFiles.first.uri;
           //   // Delete file
-          //   final deleted = await Mediagetter().deleteFile(filePath: path);
+          //   final deleted = await media_getter().deleteFile(filePath: path);
           //   print("File deleted: $deleted");
           // }
 
-          await Mediagetter().showToast(
+          await media_getter().showToast(
             "Found ${getDownloadedFiles.length} files",
             length: ToastLength.short,
           );
@@ -126,7 +126,7 @@ dependencies:
 ```bash
     I/flutter (10376): 👉🏻 getAllImages (/storage/emulated/0/Download/images.png)
     I/flutter (10376): 👉🏻 limitedVideos (/storage/emulated/0/Download/file_example_MP4_480_1_5MG.mp4)
-    I/flutter (10376): 👉🏻 mediagetter method channel  getAllFiles fileExtensions: [pdf, txt, mp4, mp3, jpg, wav], limit:null,orderByDesc:true 
+    I/flutter (10376): 👉🏻 media_getter method channel  getAllFiles fileExtensions: [pdf, txt, mp4, mp3, jpg, wav], limit:null,orderByDesc:true 
     I/flutter (10376): 👉🏻 getFiles (/storage/emulated/0/Documents/Get_Started_With_Smallpdf.pdf, /storage/emulated/0/Download/file_example_MP4_480_1_5MG.mp4, /storage/emulated/0/Download/file_example_MP3_1MG (1).mp3, /storage/emulated/0/Download/file_example_MP3_1MG.mp3, /storage/emulated/0/Download/Get_Started_With_Smallpdf.pdf)
     I/flutter (10376): 👉🏻 getDownloadedFiles (/storage/emulated/0/Download/images.png, /storage/emulated/0/Download/sample-large-zip-file.zip, /storage/emulated/0/Download/sample-zip-file.zip, ..., /storage/emulated/0/Download/images.jpeg, /storage/emulated/0/Download/download.png)
 ```

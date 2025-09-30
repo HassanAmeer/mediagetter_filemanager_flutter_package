@@ -5,16 +5,16 @@
 // platforms in the `pubspec.yaml` at
 // https://flutter.dev/to/pubspec-plugin-platforms.
 
-import 'package:mediagetter/models/fileModel.dart';
-import 'package:mediagetter/models/videoModel.dart';
+import 'package:media_getter/models/fileModel.dart';
+import 'package:media_getter/models/videoModel.dart';
 
-import 'mediagetter_method_channel.dart';
-import 'mediagetter_platform_interface.dart';
+import 'media_getter_method_channel.dart';
+import 'media_getter_platform_interface.dart';
 import 'models/imageModel.dart';
 
-class Mediagetter {
+class MediaGetter {
   Future<String?> getPlatformVersion() {
-    return MediagetterPlatform.instance.getPlatformVersion();
+    return media_getterPlatform.instance.getPlatformVersion();
   }
 
   // 1
@@ -23,7 +23,7 @@ class Mediagetter {
     int? limit,
     bool orderByDesc = true,
   }) {
-    return MediagetterPlatform.instance.getAllImages(
+    return media_getterPlatform.instance.getAllImages(
       fromDate: fromDate,
       limit: limit,
       orderByDesc: orderByDesc,
@@ -36,7 +36,7 @@ class Mediagetter {
     int? limit,
     bool orderByDesc = true,
   }) {
-    return MediagetterPlatform.instance.getAllVideos(
+    return media_getterPlatform.instance.getAllVideos(
       fromDate: fromDate,
       limit: limit,
       orderByDesc: orderByDesc,
@@ -50,7 +50,7 @@ class Mediagetter {
     bool orderByDesc = true,
     List<String> fileExtensions = const ['pdf', 'txt', 'zip'],
   }) {
-    return MediagetterPlatform.instance.getAllFiles(
+    return media_getterPlatform.instance.getAllFiles(
       fromDate: fromDate,
       limit: limit,
       orderByDesc: orderByDesc,
@@ -64,7 +64,7 @@ class Mediagetter {
     int? limit,
     bool orderByDesc = true,
   }) {
-    return MediagetterPlatform.instance.getDownloadFolderItems(
+    return media_getterPlatform.instance.getDownloadFolderItems(
       fromDate: fromDate,
       limit: limit,
       orderByDesc: orderByDesc,
@@ -73,16 +73,16 @@ class Mediagetter {
 
   // 5
   Future showToast(String message, {ToastLength length = ToastLength.short}) {
-    return MediagetterPlatform.instance.showToast(message, length: length);
+    return media_getterPlatform.instance.showToast(message, length: length);
   }
 
   // 6
   // Future<bool> openFile({required String filePath}) {
-  //   return MediagetterPlatform.instance.openFile(filePath: filePath);
+  //   return media_getterPlatform.instance.openFile(filePath: filePath);
   // }
 
   // 7
   Future<bool> deleteFile({required String filePath}) {
-    return MediagetterPlatform.instance.deleteFile(filePath: filePath);
+    return media_getterPlatform.instance.deleteFile(filePath: filePath);
   }
 }

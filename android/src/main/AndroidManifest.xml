@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.devbeast.mediagetter">
+  package="com.devbeast.media_getter">
   
   <!-- just accept it by permissions handler package -->
   <!-- for all -->

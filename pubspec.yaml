@@ -1,4 +1,4 @@
-name: mediagetter
+name: media_getter
 description: "Retrieve all images, videos, and files from Android device storage."
 version: 0.0.1
 
@@ -43,7 +43,7 @@ flutter:
     platforms:
       android:
         package: com.devbeast.mediagetter
-        pluginClass: MediagetterPlugin
+        pluginClass: MediagetterPlugin 
 
 ####################
 screenshots:

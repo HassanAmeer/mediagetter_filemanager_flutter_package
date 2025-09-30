@@ -1,4 +1,4 @@
-group 'com.devbeast.mediagetter'
+group 'com.devbeast.media_getter'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -26,7 +26,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 33
-    namespace 'com.devbeast.mediagetter'
+    namespace 'com.devbeast.media_getter'
     
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

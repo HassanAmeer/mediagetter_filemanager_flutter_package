@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mediagetter/mediagetter.dart';
+import 'package:media_getter/media_getter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io'; // For Platform checks
 
@@ -14,7 +14,7 @@ class FileManagerDemoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'File Manager Demo BY MediaGetter',
+      title: 'File Manager Demo BY media_getter',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.indigo, // Indigo as primary color
@@ -43,7 +43,7 @@ class FileManagerHomePage extends StatefulWidget {
 }
 
 class _FileManagerHomePageState extends State<FileManagerHomePage> {
-  // Lists to store fetched files from mediagetter
+  // Lists to store fetched files from media_getter
   List<dynamic> images = [];
   List<dynamic> videos = [];
   List<dynamic> files = [];
@@ -53,10 +53,12 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
   bool isLoading = false; // Controls loading indicator
   String? errorMessage; // Displays error messages
   String searchQuery = ''; // Stores search input
-  int selectedTab = 0; // Tracks current tab (0: All Files, 1: Downloads, 2: Images, 3: Videos)
+  int selectedTab =
+      0; // Tracks current tab (0: All Files, 1: Downloads, 2: Images, 3: Videos)
   String sortBy = 'date'; // Sorting criteria (name, date, size)
   bool sortAscending = false; // Sort direction
-  final TextEditingController _searchController = TextEditingController(); // Search field controller
+  final TextEditingController _searchController =
+      TextEditingController(); // Search field controller
 
   /// Requests storage permissions required for file access.
   Future<bool> _requestPermissions() async {
@@ -66,15 +68,18 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
       Permission.photos, // Images (Android 13+)
       Permission.videos, // Videos (Android 13+)
       Permission.audio, // Audio (Android 13+)
-      if (Platform.isAndroid) Permission.manageExternalStorage, // Non-media files (Android 11+)
+      if (Platform.isAndroid)
+        Permission.manageExternalStorage, // Non-media files (Android 11+)
     ].request();
 
     // Check if permissions are granted
     final hasStorageAccess = statuses[Permission.storage]?.isGranted ?? false;
-    final hasMediaAccess = (statuses[Permission.photos]?.isGranted ?? true) &&
+    final hasMediaAccess =
+        (statuses[Permission.photos]?.isGranted ?? true) &&
         (statuses[Permission.videos]?.isGranted ?? true) &&
         (statuses[Permission.audio]?.isGranted ?? true);
-    final hasFullAccess = statuses[Permission.manageExternalStorage]?.isGranted ?? true;
+    final hasFullAccess =
+        statuses[Permission.manageExternalStorage]?.isGranted ?? true;
 
     if (!hasStorageAccess && !hasMediaAccess && !hasFullAccess) {
       setState(() {
@@ -83,8 +88,10 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please grant storage permissions')),
       );
-      if (statuses[Permission.storage]?.isPermanentlyDenied ?? false ||
-          statuses[Permission.manageExternalStorage]!.isPermanentlyDenied ?? false) {
+      if (statuses[Permission.storage]?.isPermanentlyDenied ??
+          false ||
+              statuses[Permission.manageExternalStorage]!.isPermanentlyDenied ??
+          false) {
         await openAppSettings(); // Prompt user to enable permissions in settings
       }
       return false;
@@ -92,7 +99,7 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
     return true;
   }
 
-  /// Fetches files using the mediagetter plugin.
+  /// Fetches files using the media_getter plugin.
   Future<void> _fetchFiles() async {
     setState(() {
       isLoading = true;
@@ -105,43 +112,55 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
 
     try {
       // Fetch images from the last 7 days
-      images = await Mediagetter().getAllImages(
+      images = await MediaGetter().getAllImages(
         orderByDesc: !sortAscending,
         fromDate: DateTime.now().subtract(const Duration(days: 7)),
       );
       debugPrint('👉🏻 Images: ${images.map((e) => e.path).toList()}');
 
       // Fetch all videos
-      videos = await Mediagetter().getAllVideos(
-        orderByDesc: !sortAscending,
-      );
+      videos = await MediaGetter().getAllVideos(orderByDesc: !sortAscending);
       debugPrint('👉🏻 Videos: ${videos.map((e) => e.path).toList()}');
 
       // Fetch files with common extensions
-      files = await Mediagetter().getAllFiles(
-        fileExtensions: ['pdf', 'txt', 'doc', 'docx', 'mp4', 'mp3', 'jpg', 'png', 'wav'],
+      files = await MediaGetter().getAllFiles(
+        fileExtensions: [
+          'pdf',
+          'txt',
+          'doc',
+          'docx',
+          'mp4',
+          'mp3',
+          'jpg',
+          'png',
+          'wav',
+        ],
         orderByDesc: !sortAscending,
       );
       debugPrint('👉🏻 Files: ${files.map((e) => e.path).toList()}');
 
       // Fetch files from the Download folder
-      downloadedFiles = await Mediagetter().getDownloadFolderItems(
+      downloadedFiles = await MediaGetter().getDownloadFolderItems(
         orderByDesc: !sortAscending,
       );
-      debugPrint('👉🏻 Downloaded Files: ${downloadedFiles.map((e) => e.path).toList()}');
+      debugPrint(
+        '👉🏻 Downloaded Files: ${downloadedFiles.map((e) => e.path).toList()}',
+      );
 
       // Show success feedback
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Found ${downloadedFiles.length} files in Downloads')),
+        SnackBar(
+          content: Text('Found ${downloadedFiles.length} files in Downloads'),
+        ),
       );
     } catch (e) {
       setState(() {
         errorMessage = 'Error fetching files: $e';
       });
       debugPrint('Error: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error fetching files: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error fetching files: $e')));
     } finally {
       setState(() {
         isLoading = false;
@@ -150,22 +169,20 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
   }
 
   /// Opens a file using its path or URI with the device's default app.
-  Future<void> _openFile(String filePath) async {
-    
-  }
+  Future<void> _openFile(String filePath) async {}
 
   /// Deletes a file using its path or URI and refreshes the file list.
   Future<void> _deleteFile(String filePath) async {
-    final success = await Mediagetter().deleteFile(filePath: filePath);
+    final success = await MediaGetter().deleteFile(filePath: filePath);
     if (success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('File deleted')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('File deleted')));
       await _fetchFiles(); // Refresh file list
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to delete file')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Failed to delete file')));
     }
   }
 
@@ -211,15 +228,19 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
     }).toList();
 
     if (sortBy == 'name') {
-      filteredFiles.sort((a, b) => sortAscending
-          ? (a.name ?? '').compareTo(b.name ?? '')
-          : (b.name ?? '').compareTo(a.name ?? ''));
+      filteredFiles.sort(
+        (a, b) => sortAscending
+            ? (a.name ?? '').compareTo(b.name ?? '')
+            : (b.name ?? '').compareTo(a.name ?? ''),
+      );
     } else if (sortBy == 'size') {
-      filteredFiles.sort((a, b) => sortAscending
-          ? (a.size ?? 0).compareTo(b.size ?? 0)
-          : (b.size ?? 0).compareTo(a.size ?? 0));
+      filteredFiles.sort(
+        (a, b) => sortAscending
+            ? (a.size ?? 0).compareTo(b.size ?? 0)
+            : (b.size ?? 0).compareTo(a.size ?? 0),
+      );
     }
-    // Date sorting is handled by mediagetter
+    // Date sorting is handled by media_getter
     return filteredFiles;
   }
 
@@ -230,7 +251,10 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.indigo, Colors.indigoAccent], // Gradient for app bar
+              colors: [
+                Colors.indigo,
+                Colors.indigoAccent,
+              ], // Gradient for app bar
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -258,7 +282,9 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
               const PopupMenuItem(value: 'size', child: Text('Sort by Size')),
               PopupMenuItem(
                 value: 'ascending',
-                child: Text(sortAscending ? 'Sort Descending' : 'Sort Ascending'),
+                child: Text(
+                  sortAscending ? 'Sort Descending' : 'Sort Ascending',
+                ),
               ),
             ],
           ),
@@ -319,13 +345,27 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height - 250, // Adjust for app bar, search, and tab bar
+                  height:
+                      MediaQuery.of(context).size.height -
+                      250, // Adjust for app bar, search, and tab bar
                   child: TabBarView(
                     children: [
-                      _buildFileList(_filterAndSortFiles(files), 'No files found.'),
-                      _buildFileList(_filterAndSortFiles(downloadedFiles), 'No files in Downloads.'),
-                      _buildFileList(_filterAndSortFiles(images), 'No images found.'),
-                      _buildFileList(_filterAndSortFiles(videos), 'No videos found.'),
+                      _buildFileList(
+                        _filterAndSortFiles(files),
+                        'No files found.',
+                      ),
+                      _buildFileList(
+                        _filterAndSortFiles(downloadedFiles),
+                        'No files in Downloads.',
+                      ),
+                      _buildFileList(
+                        _filterAndSortFiles(images),
+                        'No images found.',
+                      ),
+                      _buildFileList(
+                        _filterAndSortFiles(videos),
+                        'No videos found.',
+                      ),
                     ],
                   ),
                 ),
@@ -394,7 +434,8 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
 
         return Card(
           child: ListTile(
-            leading: extension == 'jpg' || extension == 'png' || extension == 'jpeg'
+            leading:
+                extension == 'jpg' || extension == 'png' || extension == 'jpeg'
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(4),
                     child: Image.network(
@@ -402,7 +443,8 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => _getFileIcon(extension),
+                      errorBuilder: (context, error, stackTrace) =>
+                          _getFileIcon(extension),
                     ),
                   )
                 : _getFileIcon(extension),
@@ -432,7 +474,10 @@ class _FileManagerHomePageState extends State<FileManagerHomePage> {
                         await _deleteFile(path); // Delete file
                         Navigator.pop(context); // Close dialog
                       },
-                      child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                      child: const Text(
+                        'Delete',
+                        style: TextStyle(color: Colors.red),
+                      ),
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context),
