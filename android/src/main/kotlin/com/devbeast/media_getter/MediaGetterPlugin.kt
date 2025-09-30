@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class media_getterPlugin : FlutterPlugin, MethodCallHandler {
+class MediaGetterPlugin : FlutterPlugin, MethodCallHandler {
   private lateinit var channel: MethodChannel
   private lateinit var context: Context
 
@@ -50,7 +50,7 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
             withContext(Dispatchers.Main) { result.success(images) }
           } catch (e: Exception) {
             withContext(Dispatchers.Main) {
-              android.util.Log.e("media_getterPlugin", "Failed to get images: ${e.message}", e)
+              android.util.Log.e("MediaGetterPlugin", "Failed to get images: ${e.message}", e)
               result.error("ERROR", "Failed to get images: ${e.message}", null)
             }
           }
@@ -67,7 +67,7 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
             withContext(Dispatchers.Main) { result.success(videos) }
           } catch (e: Exception) {
             withContext(Dispatchers.Main) {
-              android.util.Log.e("media_getterPlugin", "Failed to get videos: ${e.message}", e)
+              android.util.Log.e("MediaGetterPlugin", "Failed to get videos: ${e.message}", e)
               result.error("ERROR", "Failed to get videos: ${e.message}", null)
             }
           }
@@ -85,7 +85,7 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
             withContext(Dispatchers.Main) { result.success(files) }
           } catch (e: Exception) {
             withContext(Dispatchers.Main) {
-              android.util.Log.e("media_getterPlugin", "Failed to get files: ${e.message}", e)
+              android.util.Log.e("MediaGetterPlugin", "Failed to get files: ${e.message}", e)
               result.error("ERROR", "Failed to get files: ${e.message}", null)
             }
           }
@@ -103,7 +103,7 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
           } catch (e: Exception) {
             withContext(Dispatchers.Main) {
               android.util.Log.e(
-                "media_getterPlugin",
+                "MediaGetterPlugin",
                 "Failed to get download folder items: ${e.message}",
                 e
               )
@@ -132,7 +132,7 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
             withContext(Dispatchers.Main) { result.success(success) }
           } catch (e: Exception) {
             withContext(Dispatchers.Main) {
-              android.util.Log.e("media_getterPlugin", "Failed to delete file: ${e.message}", e)
+              android.util.Log.e("MediaGetterPlugin", "Failed to delete file: ${e.message}", e)
               result.error("ERROR", "Failed to delete file: ${e.message}", null)
             }
           }
@@ -233,16 +233,16 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
             images.add(imageMap)
             count++
           } catch (e: Exception) {
-            android.util.Log.w("media_getterPlugin", "Skipping image: ${e.message}")
+            android.util.Log.w("MediaGetterPlugin", "Skipping image: ${e.message}")
             continue
           }
         }
       } ?: throw Exception("Unable to query MediaStore - cursor is null")
     } catch (e: SecurityException) {
-      android.util.Log.e("media_getterPlugin", "Permission denied", e)
+      android.util.Log.e("MediaGetterPlugin", "Permission denied", e)
       throw Exception("Permission denied. Ensure READ_EXTERNAL_STORAGE or READ_MEDIA_IMAGES permissions are granted.")
     } catch (e: Exception) {
-      android.util.Log.e("media_getterPlugin", "Error accessing MediaStore", e)
+      android.util.Log.e("MediaGetterPlugin", "Error accessing MediaStore", e)
       throw Exception("Error accessing MediaStore: ${e.message}")
     }
 
@@ -341,16 +341,16 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
             videos.add(videoMap)
             count++
           } catch (e: Exception) {
-            android.util.Log.w("media_getterPlugin", "Skipping video: ${e.message}")
+            android.util.Log.w("MediaGetterPlugin", "Skipping video: ${e.message}")
             continue
           }
         }
       } ?: throw Exception("Unable to query MediaStore - cursor is null")
     } catch (e: SecurityException) {
-      android.util.Log.e("media_getterPlugin", "Permission denied", e)
+      android.util.Log.e("MediaGetterPlugin", "Permission denied", e)
       throw Exception("Permission denied. Ensure READ_EXTERNAL_STORAGE or READ_MEDIA_VIDEO permissions are granted.")
     } catch (e: Exception) {
-      android.util.Log.e("media_getterPlugin", "Error accessing MediaStore", e)
+      android.util.Log.e("MediaGetterPlugin", "Error accessing MediaStore", e)
       throw Exception("Error accessing MediaStore: ${e.message}")
     }
 
@@ -469,16 +469,16 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
             files.add(fileMap)
             count++
           } catch (e: Exception) {
-            android.util.Log.w("media_getterPlugin", "Skipping file: ${e.message}")
+            android.util.Log.w("MediaGetterPlugin", "Skipping file: ${e.message}")
             continue
           }
         }
       } ?: throw Exception("Unable to query MediaStore - cursor is null")
     } catch (e: SecurityException) {
-      android.util.Log.e("media_getterPlugin", "Permission denied", e)
+      android.util.Log.e("MediaGetterPlugin", "Permission denied", e)
       throw Exception("Permission denied. Ensure READ_EXTERNAL_STORAGE or READ_MEDIA_* permissions are granted.")
     } catch (e: Exception) {
-      android.util.Log.e("media_getterPlugin", "Error accessing MediaStore", e)
+      android.util.Log.e("MediaGetterPlugin", "Error accessing MediaStore", e)
       throw Exception("Error accessing MediaStore: ${e.message}")
     }
 
@@ -588,7 +588,7 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
             files.add(fileMap)
             count++
           } catch (e: Exception) {
-            android.util.Log.w("media_getterPlugin", "Skipping file: ${e.message}")
+            android.util.Log.w("MediaGetterPlugin", "Skipping file: ${e.message}")
             continue
           }
         }
@@ -636,10 +636,10 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
         }
       }
     } catch (e: SecurityException) {
-      android.util.Log.e("media_getterPlugin", "Permission denied", e)
+      android.util.Log.e("MediaGetterPlugin", "Permission denied", e)
       throw Exception("Permission denied. Ensure READ_EXTERNAL_STORAGE or READ_MEDIA_* permissions are granted.")
     } catch (e: Exception) {
-      android.util.Log.e("media_getterPlugin", "Error accessing Download folder", e)
+      android.util.Log.e("MediaGetterPlugin", "Error accessing Download folder", e)
       throw Exception("Error accessing Download folder: ${e.message}")
     }
 
@@ -665,10 +665,10 @@ class media_getterPlugin : FlutterPlugin, MethodCallHandler {
         return deletedRows > 0
       }
     } catch (e: SecurityException) {
-      android.util.Log.e("media_getterPlugin", "Permission denied for deletion", e)
+      android.util.Log.e("MediaGetterPlugin", "Permission denied for deletion", e)
       return false
     } catch (e: Exception) {
-      android.util.Log.e("media_getterPlugin", "Error deleting file: ${e.message}", e)
+      android.util.Log.e("MediaGetterPlugin", "Error deleting file: ${e.message}", e)
       return false
     }
   }

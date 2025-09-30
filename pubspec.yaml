@@ -42,8 +42,8 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.devbeast.mediagetter
-        pluginClass: MediagetterPlugin 
+        package: com.devbeast.media_getter
+        pluginClass: MediaGetterPlugin 
 
 ####################
 screenshots:

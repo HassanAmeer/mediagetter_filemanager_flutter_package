@@ -17,7 +17,7 @@ A Flutter plugin for accessing media and files on Android devices using method c
 - Display native Android toast notifications.
 
 ### Screenshots
- <img src="https://github.com/HassanAmeer/media_getter_filemanager_flutter_package/blob/main/screenshots/demo.png" style="width:50%">
+ <img src="screenshots/demo.png" style="width:50%">
  <hr>
 
 
